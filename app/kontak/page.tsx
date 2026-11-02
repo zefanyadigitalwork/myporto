@@ -9,7 +9,7 @@ export default async function ContactPage() {
   const { profile } = await getContent();
 
   return (
-    <SiteShell name={profile.name}>
+    <SiteShell name={profile.name} role={profile.role} email={profile.email}>
       <main className="min-h-[70vh] bg-pine px-6 py-20 text-stone md:px-14 md:py-32">
         <div className="mx-auto max-w-6xl">
           <p className="mb-4 text-xs uppercase tracking-[.22em] text-brass">Mari terhubung</p>

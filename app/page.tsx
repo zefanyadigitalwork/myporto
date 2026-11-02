@@ -43,7 +43,7 @@ export default async function Home() {
   const skills = profile.skills.split(",").map((skill) => skill.trim()).filter(Boolean).slice(0, 4);
 
   return (
-    <SiteShell name={profile.name}>
+    <SiteShell name={profile.name} role={profile.role} email={profile.email}>
       <main>
         <section className="relative overflow-hidden px-6 pb-20 pt-14 md:px-14 md:pb-28 md:pt-20">
           <div className="pointer-events-none absolute -right-36 top-12 h-[28rem] w-[28rem] rounded-full border border-brass/20 md:right-0" />
@@ -148,15 +148,6 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="bg-pine px-6 py-16 text-stone md:px-14 md:py-20">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-8">
-            <div>
-              <p className="mb-3 text-xs uppercase tracking-[.22em] text-brass">Ada proyek menarik?</p>
-              <h2 className="max-w-2xl font-serif text-4xl leading-tight md:text-6xl">Mari ciptakan sesuatu yang berarti.</h2>
-            </div>
-            <Link href="/kontak" className="group inline-flex items-center gap-5 border border-stone/40 px-6 py-4 text-sm transition-colors hover:border-brass hover:bg-brass hover:text-ink">Mulai percakapan <span className="text-lg transition-transform group-hover:translate-x-1">→</span></Link>
-          </div>
-        </section>
       </main>
     </SiteShell>
   );

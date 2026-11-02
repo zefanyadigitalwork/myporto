@@ -8,7 +8,7 @@ export default async function WorksPage() {
   const { profile, projects } = await getContent();
 
   return (
-    <SiteShell name={profile.name}>
+    <SiteShell name={profile.name} role={profile.role} email={profile.email}>
       <main className="mx-auto min-h-[70vh] max-w-6xl px-6 py-16 md:px-14 md:py-24">
         <p className="mb-3 text-xs uppercase tracking-[.22em] text-wine">Portofolio</p>
         <h1 className="font-serif text-6xl md:text-7xl">Karya</h1>

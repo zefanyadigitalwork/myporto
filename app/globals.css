@@ -1,7 +1,55 @@
 @tailwind base; @tailwind components; @tailwind utilities;
 html { scroll-behavior: smooth; }
+:root {
+  --color-stone: 244 241 234;
+  --color-pine: 32 54 48;
+  --color-brass: 180 154 108;
+  --color-ink: 32 37 35;
+  --color-wine: 128 100 92;
+  color-scheme: light;
+}
+html[data-theme="soft-light"] {
+  --color-stone: 242 239 233;
+  --color-pine: 57 74 66;
+  --color-brass: 169 144 105;
+  --color-ink: 49 53 50;
+  --color-wine: 120 102 92;
+}
+html[data-theme="pastel"] {
+  --color-stone: 246 241 247;
+  --color-pine: 83 68 101;
+  --color-brass: 169 113 137;
+  --color-ink: 52 46 58;
+  --color-wine: 123 94 125;
+}
+html[data-theme="dark"] {
+  --color-stone: 21 25 23;
+  --color-pine: 37 54 47;
+  --color-brass: 207 177 117;
+  --color-ink: 234 235 228;
+  --color-wine: 208 162 145;
+  color-scheme: dark;
+}
+html[data-theme="soft-dark"] {
+  --color-stone: 37 38 36;
+  --color-pine: 57 70 63;
+  --color-brass: 198 174 128;
+  --color-ink: 236 233 225;
+  --color-wine: 202 166 151;
+  color-scheme: dark;
+}
 body { @apply bg-stone text-ink font-sans antialiased; }
 :focus-visible { outline: 2px solid #B49A6C; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 .rise { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+html[data-theme="dark"] .text-stone,
+html[data-theme="soft-dark"] .text-stone { color: #f0eee7; }
+html[data-theme="dark"] .bg-ink { background-color: #0e1210; }
+html[data-theme="soft-dark"] .bg-ink { background-color: #1c1d1b; }
+html[data-theme="dark"] .bg-white { background-color: #1b211e; }
+html[data-theme="soft-dark"] .bg-white { background-color: #30312f; }
+html[data-theme="dark"] [class*="border-stone"],
+html[data-theme="soft-dark"] [class*="border-stone"] { border-color: rgb(240 238 231 / .2); }
+html[data-theme="dark"] [class*="border-pine"],
+html[data-theme="soft-dark"] [class*="border-pine"] { border-color: rgb(190 205 194 / .35); }

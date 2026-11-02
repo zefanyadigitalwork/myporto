@@ -9,7 +9,7 @@ export default async function CvPage() {
   const { profile } = await getContent();
 
   return (
-    <SiteShell name={profile.name}>
+    <SiteShell name={profile.name} role={profile.role} email={profile.email}>
       <main className="mx-auto min-h-[70vh] max-w-6xl px-6 py-16 md:px-14 md:py-20">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
           <div>
