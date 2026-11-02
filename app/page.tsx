@@ -106,7 +106,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="bg-white px-6 py-20 md:px-14 md:py-28">
+        <section className="bg-surface px-6 py-20 md:px-14 md:py-28">
           <div className="mx-auto max-w-6xl">
             <div className="mb-10 flex flex-wrap items-end justify-between gap-5 md:mb-14">
               <div>

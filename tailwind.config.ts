@@ -5,6 +5,7 @@ export default {
     colors: {
       stone: "rgb(var(--color-stone) / <alpha-value>)",
       "stone-foreground": "rgb(var(--color-stone-foreground) / <alpha-value>)",
+      surface: "rgb(var(--color-surface) / <alpha-value>)",
       pine: "rgb(var(--color-pine) / <alpha-value>)",
       "pine-foreground": "rgb(var(--color-pine-foreground) / <alpha-value>)",
       brass: "rgb(var(--color-brass) / <alpha-value>)",

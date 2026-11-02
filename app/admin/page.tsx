@@ -95,7 +95,7 @@ const emptyProject: ProjectDraft = {
   title: "", category: "", year: String(new Date().getFullYear()), cover_url: "", description: "", sort: 0,
 };
 const inputClass = "w-full border border-ink/20 bg-stone px-3 py-2.5 text-sm text-ink placeholder:text-ink/45 focus:border-brass focus:outline-none";
-const cardClass = "space-y-5 border border-ink/10 bg-white/40 p-5 sm:p-7";
+const cardClass = "space-y-5 border border-ink/10 bg-surface p-5 sm:p-7";
 
 export default function Admin() {
   const [ok, setOk] = useState(false);
@@ -300,7 +300,7 @@ export default function Admin() {
 
   return (
     <div className="min-h-screen bg-stone lg:grid lg:grid-cols-[250px_minmax(0,1fr)]">
-      <aside className="border-b border-ink/10 bg-white/50 px-4 py-5 lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-r lg:px-5 lg:py-7">
+      <aside className="border-b border-ink/10 bg-surface px-4 py-5 lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-r lg:px-5 lg:py-7">
         <a href="/" className="flex items-center gap-3 px-2">
           <span className="flex h-10 w-10 items-center justify-center border border-pine/30 font-serif text-lg text-pine-foreground">
             {profile.name.split(/\s+/).map((part) => part[0]).slice(0, 2).join("")}
@@ -319,9 +319,9 @@ export default function Admin() {
               type="button"
               aria-current={activeMenu === menu.id ? "page" : undefined}
               onClick={() => { setActiveMenu(menu.id); setMsg(""); }}
-              className={`flex shrink-0 items-center gap-3 px-3 py-2.5 text-left text-sm transition-colors lg:w-full ${activeMenu === menu.id ? "bg-pine text-stone-foreground" : "text-ink/70 hover:bg-pine/5 hover:text-pine"}`}
+              className={`flex shrink-0 items-center gap-3 px-3 py-2.5 text-left text-sm transition-colors lg:w-full ${activeMenu === menu.id ? "bg-pine text-stone-foreground" : "text-ink/80 hover:bg-pine/5 hover:text-pine-foreground"}`}
             >
-              <span className={`flex h-7 w-7 items-center justify-center text-[10px] ${activeMenu === menu.id ? "bg-stone/15 text-brass" : "bg-ink/5 text-ink/50"}`}>{String(index + 1).padStart(2, "0")}</span>
+              <span className={`flex h-7 w-7 items-center justify-center text-[10px] ${activeMenu === menu.id ? "bg-stone/15 text-brass" : "bg-ink/5 text-ink/75"}`}>{String(index + 1).padStart(2, "0")}</span>
               {menu.label}
             </button>
           ))}

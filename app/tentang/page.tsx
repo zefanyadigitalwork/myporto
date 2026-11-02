@@ -20,7 +20,7 @@ export default async function AboutPage() {
           <section className="border-t border-brass/50 pt-6 md:border-l md:border-t-0 md:pl-10 md:pt-0">
             <h2 className="font-serif text-3xl">{profile.about_skills_heading}</h2>
             <ul className="mt-6 flex flex-wrap gap-3">
-              {skills.map((skill) => <li key={skill} className="border border-ink/15 bg-white px-4 py-2 text-sm">{skill}</li>)}
+              {skills.map((skill) => <li key={skill} className="border border-ink/15 bg-surface px-4 py-2 text-sm">{skill}</li>)}
             </ul>
           </section>
         </div>
