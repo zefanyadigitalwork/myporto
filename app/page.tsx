@@ -3,7 +3,7 @@ import { getContent } from "@/lib/content";
 import { SiteShell } from "@/components/site-shell";
 import { buttonClass } from "@/components/ui/button";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 const artworkStyles = [
   { background: "bg-[#d9c7aa]", circle: "bg-[#b06d4d]", block: "bg-[#35483e]", text: "text-[#f4f1ea]" },
@@ -43,7 +43,7 @@ export default async function Home() {
   const skills = profile.skills.split(",").map((skill) => skill.trim()).filter(Boolean).slice(0, 4);
 
   return (
-    <SiteShell name={profile.name} role={profile.role} email={profile.email}>
+    <SiteShell profile={profile}>
       <main>
         <section className="relative overflow-hidden px-6 pb-20 pt-14 md:px-14 md:pb-28 md:pt-20">
           <div className="pointer-events-none absolute -right-36 top-12 h-[28rem] w-[28rem] rounded-full border border-brass/20 md:right-0" />
@@ -56,14 +56,14 @@ export default async function Home() {
               <h1 className="rise mt-7 font-serif text-[clamp(4.5rem,10vw,8.5rem)] font-medium leading-[.78] tracking-[-.055em] [animation-delay:.1s]">
                 <span className="block">{firstName}</span>
                 {lastName && <span className="mt-3 block text-pine-foreground">{lastName}</span>}
-                <span className="mt-5 block font-sans text-sm font-medium tracking-[.2em] text-ink/45 md:text-base">DESIGNER · INDONESIA</span>
+                <span className="mt-5 block font-sans text-sm font-medium tracking-[.2em] text-ink/45 md:text-base">{profile.home_kicker}</span>
               </h1>
               <p className="rise mt-8 max-w-md font-serif text-xl leading-relaxed text-ink/65 [animation-delay:.2s] md:text-2xl">
                 {profile.tagline}
               </p>
               <div className="rise mt-8 flex flex-wrap items-center gap-5 [animation-delay:.3s]">
-                <Link href="/karya" className={buttonClass("dark")}>Jelajahi karya <span aria-hidden="true" className="ml-3">↗</span></Link>
-                <Link href="/tentang" className="border-b border-brass pb-1 text-sm transition-colors hover:text-wine">Kenali saya</Link>
+                <Link href="/karya" className={buttonClass("dark")}>{profile.home_primary_link} <span aria-hidden="true" className="ml-3">↗</span></Link>
+                <Link href="/tentang" className="border-b border-brass pb-1 text-sm transition-colors hover:text-wine">{profile.home_secondary_link}</Link>
               </div>
             </div>
 
@@ -81,7 +81,7 @@ export default async function Home() {
                           <span className="font-serif text-[clamp(9rem,20vw,16rem)] leading-none text-[#f4f1ea]">P</span>
                         </div>
                         <div className="absolute left-5 top-5 flex items-center gap-2 text-[10px] uppercase tracking-[.22em] text-[#202523]/75">
-                          <span className="h-2 w-2 rounded-full bg-wine" /> A study in form &amp; color
+                          <span className="h-2 w-2 rounded-full bg-wine" /> {profile.home_kicker}
                         </div>
                       </>
                     )}
@@ -94,7 +94,7 @@ export default async function Home() {
                     </div>
                   </div>
                   <div className="flex items-center justify-between pt-3 text-[10px] uppercase tracking-[.2em] text-stone-foreground/80">
-                    <span>Portofolio pilihan</span><span>01 / {String(projects.length).padStart(2, "0")}</span>
+                    <span>{profile.home_projects_kicker}</span><span>01 / {String(projects.length).padStart(2, "0")}</span>
                   </div>
                 </div>
                 <span className="absolute -bottom-5 -left-5 z-20 hidden -rotate-6 bg-brass px-5 py-3 font-serif text-lg text-brass-foreground shadow-lg sm:block">Made with intention</span>
@@ -102,7 +102,7 @@ export default async function Home() {
             )}
           </div>
           <div className="mx-auto mt-16 flex max-w-6xl items-center justify-between border-t border-ink/10 pt-5 text-[10px] uppercase tracking-[.2em] text-ink/45 md:mt-20">
-            <span>Scroll untuk menjelajah</span><span className="hidden sm:block">Branding · Editorial · Visual</span><span>01 — 04</span>
+            <span>{profile.home_projects_kicker}</span><span className="hidden sm:block">{profile.home_kicker}</span><span>01 — 04</span>
           </div>
         </section>
 
@@ -110,10 +110,10 @@ export default async function Home() {
           <div className="mx-auto max-w-6xl">
             <div className="mb-10 flex flex-wrap items-end justify-between gap-5 md:mb-14">
               <div>
-                <p className="mb-3 text-xs uppercase tracking-[.22em] text-wine">Pilihan terbaru</p>
-                <h2 className="font-serif text-5xl leading-none md:text-7xl">Karya terpilih<span className="text-brass">.</span></h2>
+                <p className="mb-3 text-xs uppercase tracking-[.22em] text-wine">{profile.home_projects_kicker}</p>
+                <h2 className="font-serif text-5xl leading-none md:text-7xl">{profile.home_projects_heading}<span className="text-brass">.</span></h2>
               </div>
-              <Link href="/karya" className="group flex items-center gap-3 border-b border-brass pb-2 text-sm">Jelajahi semua karya <span className="transition-transform group-hover:translate-x-1">→</span></Link>
+              <Link href="/karya" className="group flex items-center gap-3 border-b border-brass pb-2 text-sm">{profile.home_projects_link} <span className="transition-transform group-hover:translate-x-1">→</span></Link>
             </div>
             <div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
               {selectedProjects.map((project, index) => (
@@ -135,9 +135,9 @@ export default async function Home() {
         <section className="px-6 py-20 md:px-14 md:py-28">
           <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[.8fr_1.2fr] md:gap-20">
             <div>
-              <p className="mb-3 text-xs uppercase tracking-[.22em] text-wine">Di balik karya</p>
-              <h2 className="font-serif text-5xl leading-[.98] md:text-6xl">Ide baik layak mendapat bentuk yang tepat.</h2>
-              <Link href="/tentang" className="group mt-8 inline-flex items-center gap-3 border-b border-brass pb-2 text-sm">Tentang saya <span className="transition-transform group-hover:translate-x-1">→</span></Link>
+              <p className="mb-3 text-xs uppercase tracking-[.22em] text-wine">{profile.home_about_kicker}</p>
+              <h2 className="font-serif text-5xl leading-[.98] md:text-6xl">{profile.home_about_heading}</h2>
+              <Link href="/tentang" className="group mt-8 inline-flex items-center gap-3 border-b border-brass pb-2 text-sm">{profile.home_about_link} <span className="transition-transform group-hover:translate-x-1">→</span></Link>
             </div>
             <div className="md:pt-10">
               <p className="max-w-2xl text-lg leading-8 text-ink/70">{profile.about}</p>
@@ -148,6 +148,17 @@ export default async function Home() {
           </div>
         </section>
 
+        <section className="bg-pine px-6 py-16 text-stone-foreground md:px-14 md:py-20">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-8">
+            <div>
+              <p className="mb-3 text-xs uppercase tracking-[.22em] text-brass">{profile.home_cta_kicker}</p>
+              <h2 className="max-w-2xl font-serif text-4xl leading-tight md:text-6xl">{profile.home_cta_heading}</h2>
+            </div>
+            <Link href="/kontak" className="group inline-flex items-center gap-5 border border-stone/40 px-6 py-4 text-sm transition-colors hover:border-brass hover:bg-brass hover:text-brass-foreground">
+              {profile.home_cta_link} <span className="text-lg transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
+        </section>
       </main>
     </SiteShell>
   );

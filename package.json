@@ -1,8 +1,13 @@
 {
   "name": "portfolio-creative-designer",
   "private": true,
-  "scripts": { "dev": "next dev", "build": "next build", "start": "next start" },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
+    "@supabase/server": "^1.9.2",
     "@supabase/supabase-js": "^2.45.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

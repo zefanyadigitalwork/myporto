@@ -4,17 +4,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import type { Profile } from "@/lib/content";
 
-const links = [
-  { label: "Beranda", href: "/" },
-  { label: "Karya", href: "/karya" },
-  { label: "Tentang", href: "/tentang" },
-  { label: "CV", href: "/cv" },
-  { label: "Kontak", href: "/kontak" },
-];
-
-export function SiteShell({ name, role, email, children }: { name: string; role: string; email: string; children: ReactNode }) {
+export function SiteShell({ profile, children }: { profile: Profile; children: ReactNode }) {
   const pathname = usePathname();
+  const { name, role, email } = profile;
+  const links = [
+    { label: profile.header_home_label, href: "/" },
+    { label: profile.header_works_label, href: "/karya" },
+    { label: profile.header_about_label, href: "/tentang" },
+    { label: profile.header_cv_label, href: "/cv" },
+    { label: profile.header_contact_label, href: "/kontak" },
+  ];
   const initials = name.split(" ").map((word) => word[0]).slice(0, 2).join("");
 
   return (
@@ -41,7 +42,7 @@ export function SiteShell({ name, role, email, children }: { name: string; role:
           <div className="flex items-center gap-2 sm:gap-3">
             <ThemeSwitcher />
             <Link href="/kontak" className="inline-flex items-center gap-2 border border-pine px-3 py-2.5 text-xs font-medium text-pine-foreground transition-colors hover:bg-pine hover:text-stone-foreground sm:gap-3 sm:px-5">
-              <span className="hidden sm:inline">Diskusi proyek</span><span className="sm:hidden">Kontak</span><span aria-hidden="true" className="text-base">↗</span>
+              <span className="hidden sm:inline">{profile.header_cta_label}</span><span className="sm:hidden">{profile.header_contact_label}</span><span aria-hidden="true" className="text-base">↗</span>
             </Link>
           </div>
         </div>
@@ -51,11 +52,11 @@ export function SiteShell({ name, role, email, children }: { name: string; role:
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-wrap items-end justify-between gap-8 border-b border-stone/15 py-14 md:py-16">
             <div>
-              <p className="mb-3 text-[10px] uppercase tracking-[.24em] text-brass">Ada ide yang ingin diwujudkan?</p>
-              <h2 className="max-w-2xl font-serif text-4xl leading-tight md:text-5xl">Mari buat sesuatu yang bermakna.</h2>
+              <p className="mb-3 text-[10px] uppercase tracking-[.24em] text-brass">{profile.footer_cta_kicker}</p>
+              <h2 className="max-w-2xl font-serif text-4xl leading-tight md:text-5xl">{profile.footer_cta_heading}</h2>
             </div>
             <Link href="/kontak" className="group inline-flex items-center gap-5 border border-stone/35 px-5 py-3.5 text-sm transition-colors hover:border-brass hover:bg-brass hover:text-brass-foreground">
-              Mulai percakapan <span aria-hidden="true" className="text-lg transition-transform group-hover:translate-x-1">→</span>
+              {profile.footer_cta_link} <span aria-hidden="true" className="text-lg transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
           <div className="grid gap-10 py-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_.8fr_1fr] lg:gap-16">
@@ -64,7 +65,7 @@ export function SiteShell({ name, role, email, children }: { name: string; role:
                 <span className="flex h-10 w-10 items-center justify-center border border-brass/50 font-serif text-lg text-brass">{initials}</span>
                 <span className="font-serif text-xl">{name}</span>
               </Link>
-              <p className="mt-4 max-w-xs text-sm leading-6 text-stone-foreground/75">{role} yang merancang pengalaman visual dengan perhatian pada detail dan makna.</p>
+              <p className="mt-4 max-w-xs text-sm leading-6 text-stone-foreground/75">{role} {profile.footer_description}</p>
             </div>
             <div>
               <h3 className="text-[10px] uppercase tracking-[.22em] text-brass">Jelajahi</h3>
@@ -80,7 +81,7 @@ export function SiteShell({ name, role, email, children }: { name: string; role:
           </div>
           <div className="flex flex-wrap justify-between gap-3 border-t border-stone/15 py-5 text-xs text-stone-foreground/60">
             <p>© {new Date().getFullYear()} {name}. Seluruh karya dilindungi.</p>
-            <p>Dibuat dengan ketelitian dan niat baik.</p>
+            <p>{profile.footer_note}</p>
           </div>
         </div>
       </footer>
