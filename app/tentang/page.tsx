@@ -14,7 +14,7 @@ export default async function AboutPage() {
         <h1 className="font-serif text-6xl md:text-7xl">Tentang saya</h1>
         <div className="mt-12 grid gap-14 md:grid-cols-[1.2fr_.8fr]">
           <section>
-            <p className="font-serif text-3xl leading-snug text-pine">{profile.role}</p>
+            <p className="font-serif text-3xl leading-snug text-pine-foreground">{profile.role}</p>
             <p className="mt-7 max-w-2xl whitespace-pre-line leading-8 text-ink/75">{profile.about}</p>
           </section>
           <section className="border-t border-brass/50 pt-6 md:border-l md:border-t-0 md:pl-10 md:pt-0">

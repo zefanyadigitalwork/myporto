@@ -19,15 +19,27 @@ export default function Admin() {
   useEffect(() => { load(); }, []);
   if (!supabase) return <p className="p-10">Isi NEXT_PUBLIC_SUPABASE_URL dan NEXT_PUBLIC_SUPABASE_ANON_KEY di .env.local terlebih dahulu.</p>;
   const sb = supabase;
-  const login = async () => { const { error } = await sb.auth.signInWithPassword(cred); setMsg(error ? "Email atau password salah." : ""); load(); };
+  const login = async () => {
+    const { error } = await sb.auth.signInWithPassword(cred);
+    if (error) {
+      setMsg(error.message);
+      return;
+    }
+    setMsg("");
+    await load();
+  };
   const saveProfile = async () => { const { error } = await sb.from("profile").upsert({ ...profile, id: 1 }); setMsg(error ? error.message : "Profil tersimpan."); };
   const add = async () => { if (!np.title) return setMsg("Judul wajib diisi."); const { error } = await sb.from("projects").insert({ ...np, sort: projects.length }); setMsg(error ? error.message : "Karya ditambahkan."); setNp({ title: "", category: "", year: "", cover_url: "", description: "" }); load(); };
   const del = async (id: string | number) => { await sb.from("projects").delete().eq("id", id); load(); };
   if (!ok) return (
-    <main className="mx-auto max-w-sm space-y-3 p-10"><h1 className="font-serif text-4xl">Masuk admin</h1>
+    <main className="mx-auto max-w-sm space-y-3 p-6 sm:p-10"><h1 className="font-serif text-4xl">Masuk admin</h1>
+      <p className="text-sm leading-6 text-ink/70">
+        Belum punya akun? Buat di Supabase: <strong>Authentication → Users → Add user → Create new user</strong>.
+        Pilih <strong>Create new user</strong>, bukan <strong>Invite user</strong>, agar tidak perlu mengirim email konfirmasi.
+      </p>
       <input className={inp} placeholder="Email" onChange={(e) => setCred({ ...cred, email: e.target.value })} />
       <input className={inp} type="password" placeholder="Password" onChange={(e) => setCred({ ...cred, password: e.target.value })} />
-      <Button variant="dark" onClick={login}>Masuk</Button><p className="text-sm text-wine">{msg}</p></main>);
+      <Button variant="dark" onClick={login}>Masuk</Button><p role="status" className="text-sm text-wine">{msg}</p></main>);
   return (
     <main className="mx-auto max-w-3xl space-y-12 p-6 md:p-10">
       <div className="flex justify-between"><h1 className="font-serif text-4xl">Kelola konten</h1><a href="/" className="text-sm underline">Lihat situs</a></div>

@@ -10,11 +10,11 @@ export default async function ContactPage() {
 
   return (
     <SiteShell name={profile.name} role={profile.role} email={profile.email}>
-      <main className="min-h-[70vh] bg-pine px-6 py-20 text-stone md:px-14 md:py-32">
+      <main className="min-h-[70vh] bg-pine px-6 py-20 text-stone-foreground md:px-14 md:py-32">
         <div className="mx-auto max-w-6xl">
           <p className="mb-4 text-xs uppercase tracking-[.22em] text-brass">Mari terhubung</p>
           <h1 className="max-w-4xl font-serif text-6xl leading-[.95] md:text-8xl">Punya ide untuk dikerjakan bersama?</h1>
-          <p className="mt-7 max-w-xl leading-7 text-stone/70">Saya terbuka untuk proyek kreatif, kolaborasi, dan kesempatan baru. Silakan hubungi saya melalui salah satu kanal berikut.</p>
+          <p className="mt-7 max-w-xl leading-7 text-stone-foreground/80">Saya terbuka untuk proyek kreatif, kolaborasi, dan kesempatan baru. Silakan hubungi saya melalui salah satu kanal berikut.</p>
           <dl className="mt-16 grid gap-10 border-t border-stone/20 pt-8 sm:grid-cols-2">
             <div>
               <dt className="text-sm uppercase tracking-[.18em] text-brass">Email</dt>

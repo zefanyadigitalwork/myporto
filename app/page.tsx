@@ -25,7 +25,7 @@ function ProjectArtwork({ project, index }: { project: { title: string; cover_ur
           <div className="absolute inset-0 flex items-center justify-center">
             <span className={`font-serif text-[clamp(7rem,18vw,13rem)] leading-none ${style.text}`}>{String(index + 1).padStart(2, "0")}</span>
           </div>
-          <span className="absolute left-5 top-5 text-[10px] uppercase tracking-[.24em] text-ink/60">Selected work · {project.title}</span>
+          <span className="absolute left-5 top-5 text-[10px] uppercase tracking-[.24em] text-[#202523]/75">Selected work · {project.title}</span>
         </>
       )}
       <span className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-stone text-lg text-ink transition-transform duration-300 group-hover:rotate-45" aria-hidden="true">↗</span>
@@ -55,7 +55,7 @@ export default async function Home() {
               </p>
               <h1 className="rise mt-7 font-serif text-[clamp(4.5rem,10vw,8.5rem)] font-medium leading-[.78] tracking-[-.055em] [animation-delay:.1s]">
                 <span className="block">{firstName}</span>
-                {lastName && <span className="mt-3 block text-pine">{lastName}</span>}
+                {lastName && <span className="mt-3 block text-pine-foreground">{lastName}</span>}
                 <span className="mt-5 block font-sans text-sm font-medium tracking-[.2em] text-ink/45 md:text-base">DESIGNER · INDONESIA</span>
               </h1>
               <p className="rise mt-8 max-w-md font-serif text-xl leading-relaxed text-ink/65 [animation-delay:.2s] md:text-2xl">
@@ -80,12 +80,12 @@ export default async function Home() {
                         <div className="absolute inset-0 flex items-center justify-center">
                           <span className="font-serif text-[clamp(9rem,20vw,16rem)] leading-none text-[#f4f1ea]">P</span>
                         </div>
-                        <div className="absolute left-5 top-5 flex items-center gap-2 text-[10px] uppercase tracking-[.22em] text-ink/65">
+                        <div className="absolute left-5 top-5 flex items-center gap-2 text-[10px] uppercase tracking-[.22em] text-[#202523]/75">
                           <span className="h-2 w-2 rounded-full bg-wine" /> A study in form &amp; color
                         </div>
                       </>
                     )}
-                    <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-ink/80 to-transparent p-5 pt-16 text-stone sm:p-7 sm:pt-20">
+                    <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-[#202523]/90 to-transparent p-5 pt-16 text-stone-foreground sm:p-7 sm:pt-20">
                       <div>
                         <p className="text-xs uppercase tracking-[.2em] text-brass">{featuredProject.category} · {featuredProject.year}</p>
                         <p className="mt-2 font-serif text-2xl sm:text-3xl">{featuredProject.title}</p>
@@ -93,11 +93,11 @@ export default async function Home() {
                       <span className="mb-1 text-xl" aria-hidden="true">↗</span>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between pt-3 text-[10px] uppercase tracking-[.2em] text-stone/70">
+                  <div className="flex items-center justify-between pt-3 text-[10px] uppercase tracking-[.2em] text-stone-foreground/80">
                     <span>Portofolio pilihan</span><span>01 / {String(projects.length).padStart(2, "0")}</span>
                   </div>
                 </div>
-                <span className="absolute -bottom-5 -left-5 z-20 hidden -rotate-6 bg-brass px-5 py-3 font-serif text-lg text-ink shadow-lg sm:block">Made with intention</span>
+                <span className="absolute -bottom-5 -left-5 z-20 hidden -rotate-6 bg-brass px-5 py-3 font-serif text-lg text-brass-foreground shadow-lg sm:block">Made with intention</span>
               </Link>
             )}
           </div>
